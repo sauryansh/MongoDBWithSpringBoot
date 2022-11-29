@@ -1,10 +1,12 @@
-package com.example.mongodbcurd.service;
+package com.example.mongodbcurd.service.impl;
 
 import com.example.mongodbcurd.entity.Student;
 import com.example.mongodbcurd.repository.StudentRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.SortedMap;
 
 @Service
 public class StudentService {
@@ -55,5 +57,26 @@ public class StudentService {
 
     public List<Student> studentsByNameOrMail(String name, String email) {
         return studentRepository.findStudentByNameOrEmail(name,email);
+    }
+
+    public List<Student> getAllStudentsWithSorting(String sortBy, String orderBy) {
+        Sort sort = Sort.by(Sort.Direction.fromString(sortBy),orderBy);
+        return studentRepository.findAll(sort);
+    }
+
+    public List<Student> getStudentsByDepartmentName(String departmentName) {
+        return studentRepository.findByDepartmentDepartmentName(departmentName);
+    }
+
+    public List<Student> getStudentsBySubjectName(String subjectName) {
+        return studentRepository.findBySubjectsSubjectName(subjectName);
+    }
+
+    public List<Student> getStudentsByEmailLike(String email) {
+        return studentRepository.findByEmailIsLike(email);
+    }
+
+    public List<Student> getStudentsByNameStartWith(String name) {
+        return studentRepository.findByNameStartsWith(name);
     }
 }

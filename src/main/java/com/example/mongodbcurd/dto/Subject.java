@@ -1,4 +1,4 @@
-package com.example.mongodbcurd.entity;
+package com.example.mongodbcurd.dto;
 
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -7,5 +7,5 @@ public class Subject {
     @Field("subject_name")
     private String subjectName;
     @Field("marks_obtained")
-    private Double marksObtained;
+    private String marksObtained;
 }

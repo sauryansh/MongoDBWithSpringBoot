@@ -1,7 +1,7 @@
 package com.example.mongodbcurd.controller;
 
 import com.example.mongodbcurd.entity.Student;
-import com.example.mongodbcurd.service.StudentService;
+import com.example.mongodbcurd.service.impl.StudentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,5 +61,30 @@ public class StudentController {
         return studentService.studentsByNameOrMail(name,email);
     }
 
+    @GetMapping("/allWithSorting")
+    public List<Student> getAllStudentsWithSorting(@RequestParam String sortBy,
+                                                   @RequestParam String orderBy){
+        return studentService.getAllStudentsWithSorting(sortBy,orderBy);
+    }
+
+    @GetMapping("/byDepartmentName")
+    public List<Student> getStudentsByDepartmentName(@RequestParam String departmentName){
+        return studentService.getStudentsByDepartmentName(departmentName);
+    }
+
+    @GetMapping("/bySubjectName")
+    public List<Student> getStudentsBySubjectName(@RequestParam String subjectName){
+        return studentService.getStudentsBySubjectName(subjectName);
+    }
+
+    @GetMapping("/emailLike")
+    public List<Student> getStudentsByEmailLike(@RequestParam String email){
+        return studentService.getStudentsByEmailLike(email);
+    }
+
+    @GetMapping("/startsWith")
+    public List<Student> getStudentsByNameStartWith(@RequestParam String name){
+        return studentService.getStudentsByNameStartWith(name);
+    }
 }
 
